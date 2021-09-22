@@ -1,12 +1,17 @@
 import { useState } from "react";
+import uuid from "uuid";
 import axios from "axios";
 
 function useAxios() {
-  const [ data, setData ] = useState(null);
-  const getCardData = async (url) => {
-    await axios.get(url).then((r) => setData(r));
+  const [ data, setData ] = useState([]);
+  const addData = async (url) => {
+    await axios.get(url)
+    .then( (resp) => {
+      setData( data => [...data, {...resp.data, id:uuid()} ] );
+    });
   };
-  return [data, getCardData];
+  console.log(data);
+  return [data, addData];
 }
 
 export default useAxios;

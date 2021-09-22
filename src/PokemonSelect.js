@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React , { useState } from "react";
 import pokemonList from "./pokemonList";
 import { choice } from "./helpers";
 
